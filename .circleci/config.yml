@@ -1,4 +1,4 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+---
 version: 2.1
 
 orbs:
@@ -22,6 +22,13 @@ jobs:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
+  test:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/golang:1.15.8
+    steps:
+      - checkout
+      - run: echo "this is the test job"
       - run:
           name: Run tests
           command: |
