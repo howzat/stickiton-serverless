@@ -24,3 +24,22 @@ jobs:
             gotestsum --junitfile /tmp/test-reports/unit-tests.xml
       - store_test_results:
           path: /tmp/test-reports
+  deploy:
+    executor: serverless/default
+    steps:
+      - checkout
+      - aws-cli/setup
+      - serverless/setup:
+          app-name: serverless-framework-orb
+          org-name: circleci
+      - run:
+          command: serverless deploy -v
+          name: deploy
+orbs:
+  aws-cli: circleci/aws-cli@x.y
+  serverless: circleci/serverless-framework@x.y
+version: 2.1
+workflows:
+  deploy:
+    jobs:
+      - deploy

@@ -49,10 +49,11 @@ provider:
 #    variable1: value1
 
 package:
-  exclude:
-    - ./**
   include:
     - ./bin/**
+  exclude:
+    - coverage/**
+    - .circleci/**
 
 functions:
   hello:
