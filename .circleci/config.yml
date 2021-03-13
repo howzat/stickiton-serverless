@@ -44,6 +44,9 @@ jobs:
       - serverless-framework/setup:
           app-name: serverless-framework-orb
           org-name: circleci
+      - run:
+          command: serverless deploy -v
+          name: deploy
 
 workflows:
   version: 2
