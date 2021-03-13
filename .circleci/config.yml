@@ -37,16 +37,13 @@ jobs:
       - store_test_results:
           path: /tmp/test-reports
   deploy:
-    executor: serverless/default
+    executor: serverless-framework/default
     steps:
       - checkout
       - aws-cli/setup
-      - serverless/setup:
+      - serverless-framework/setup:
           app-name: serverless-framework-orb
           org-name: circleci
-      - run:
-          command: serverless deploy -v
-          name: deploy
 
 workflows:
   version: 2
