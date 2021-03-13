@@ -34,7 +34,9 @@ jobs:
       - run: echo "this is the test job"
       - run:
           name: Run tests
-          command: make test
+          command: |
+            go vet ./...
+            gotestsum --junitfile test_results.xml
       - store_test_results:
           path: /tmp/test-reports
   deploy:
