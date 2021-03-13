@@ -1,15 +1,15 @@
-.PHONY: build clean deploy test-local
-
+.PHONY: build clean test deploy
 build:
 	export GO111MODULE=on
 	env GOOS=linux go build -ldflags="-s -w" -o bin/hello hello/main.go
-	env GOOS=linux go build -ldflags="-s -w" -o bin/world world/main.go
 
 clean:
-	rm -rf ./bin ./vendor Gopkg.lock
+	rm -rf ./bin
 
-deploy: clean build
+deploy:
 	sls deploy --verbose
 
-test-local:
-	sh test-local.sh
+test:
+	sh ./test_local.sh
+
+all: build clean test
