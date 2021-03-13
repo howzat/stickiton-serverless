@@ -2,7 +2,6 @@
 set -e
 
 set -a
-. .env.development
 . test.env
 set +a
 
